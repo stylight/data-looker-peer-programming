@@ -301,6 +301,40 @@ view: shop {
   #   drill_fields: [shop_name, company_name, technical_contact__last_name, technical_contact__first_name]
   # }
 
+  parameter: product_metric_picker {
+    type: unquoted
+    description: "Picker for choosing metric type for product count"
+    allowed_value: {
+      label: "Product sum"
+      value: "SUM"
+    }
+    allowed_value: {
+      label: "Product average"
+      value: "AVG"
+    }
+    allowed_value: {
+      label: "Product minimum"
+      value: "MIN"
+    }
+  }
+
+  parameter: timeframe_picker {
+    type: string
+    allowed_value: { label: "Date" value: "Date" }
+    allowed_value: { label: "Month" value: "Month" }
+    allowed_value: { label: "Quarter" value: "Quarter" }
+    default_value: "Date"
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    label_from_parameter: timeframe_picker
+    sql: CASE
+          WHEN {% parameter timeframe_picker %} = "Month" THEN CAST(CONCAT(${date_month}, "-01") AS DATE)
+          WHEN {% parameter timeframe_picker %} = "Quarter" THEN CAST(CONCAT(${date_quarter}, "-01") AS DATE)
+          ELSE ${date_date} END;;
+  }
+
   measure: product_cnt {
     group_label: "Product count metrics"
     label: "Product count"
@@ -316,6 +350,13 @@ view: shop {
     type: sum
     filters: [is_sem_enabled: "Yes"]
     sql: ${_product_cnt} ;;
+  }
+
+  measure: parametrized_product_cnt {
+    group_label: "Product count metrics"
+    label: "Parametrized product count"
+    type: number
+    sql: {% parameter product_metric_picker %}(${_product_cnt}) ;;
   }
 
 }
