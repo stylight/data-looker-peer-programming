@@ -4,33 +4,33 @@ include: "/shop_test_model/views/sales_conversion.view"
 explore: shop {
   hidden: no
 
-  join: shop_4__active_cpcs {
+  join: shop__active_cpcs {
     view_label: "Shop 4: Active Cpcs"
-    sql: LEFT JOIN UNNEST(${shop.active_cpcs}) as shop_4__active_cpcs ;;
+    sql: LEFT JOIN UNNEST(${shop.active_cpcs}) as shop__active_cpcs ;;
     relationship: one_to_many
   }
 
-  join: shop_4__active_verticals {
+  join: shop__active_verticals {
     view_label: "Shop 4: Active Verticals"
-    sql: LEFT JOIN UNNEST(${shop.active_verticals}) as shop_4__active_verticals ;;
+    sql: LEFT JOIN UNNEST(${shop.active_verticals}) as shop__active_verticals ;;
     relationship: one_to_many
   }
 
-  join: shop_4__luxury_loft_images {
+  join: shop__luxury_loft_images {
     view_label: "Shop 4: Luxury Loft Images"
-    sql: LEFT JOIN UNNEST(${shop.luxury_loft_images}) as shop_4__luxury_loft_images ;;
+    sql: LEFT JOIN UNNEST(${shop.luxury_loft_images}) as shop__luxury_loft_images ;;
     relationship: one_to_many
   }
 
-  join: shop_4__premium_loft_images {
+  join: shop__premium_loft_images {
     view_label: "Shop 4: Premium Loft Images"
-    sql: LEFT JOIN UNNEST(${shop.premium_loft_images}) as shop_4__premium_loft_images ;;
+    sql: LEFT JOIN UNNEST(${shop.premium_loft_images}) as shop__premium_loft_images ;;
     relationship: one_to_many
   }
 
-  join: shop_4__active_category_cpcs {
+  join: shop__active_category_cpcs {
     view_label: "Shop 4: Active Category Cpcs"
-    sql: LEFT JOIN UNNEST(${shop.active_category_cpcs}) as shop_4__active_category_cpcs ;;
+    sql: LEFT JOIN UNNEST(${shop.active_category_cpcs}) as shop__active_category_cpcs ;;
     relationship: one_to_many
   }
 

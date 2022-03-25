@@ -237,7 +237,7 @@ view: shop {
     sql: ${TABLE}.premium_loft_images ;;
   }
 
-  dimension: product_cnt {
+  dimension: _product_cnt {
     type: number
     hidden: yes
     description: "Most recent live product count"
@@ -301,12 +301,12 @@ view: shop {
   #   drill_fields: [shop_name, company_name, technical_contact__last_name, technical_contact__first_name]
   # }
 
-  measure: _product_cnt {
+  measure: product_cnt {
     group_label: "Product count metrics"
     label: "Product count"
     description: "Number of products"
     type: sum
-    sql: ${product_cnt} ;;
+    sql: ${_product_cnt} ;;
   }
 
   measure: sem_product_cnt {
@@ -315,12 +315,12 @@ view: shop {
     description: "Number of products where SEM is enabled"
     type: sum
     filters: [is_sem_enabled: "Yes"]
-    sql: ${product_cnt} ;;
+    sql: ${_product_cnt} ;;
   }
 
 }
 
-view: shop_4__active_cpcs {
+view: shop__active_cpcs {
   dimension: cpc_eur {
     type: number
     sql: cpc_eur ;;
@@ -356,7 +356,7 @@ view: shop_4__active_cpcs {
     sql: orig_cur ;;
   }
 
-  dimension: shop_4__active_cpcs {
+  dimension: shop__active_cpcs {
     type: string
     description: "Active CPCs"
     hidden: yes
@@ -383,31 +383,31 @@ view: shop_4__active_cpcs {
   }
 }
 
-view: shop_4__active_verticals {
-  dimension: shop_4__active_verticals {
+view: shop__active_verticals {
+  dimension: shop__active_verticals {
     type: string
     description: "Active verticals [Fashion, HomeAndLiving, Beauty]"
-    sql: shop_4__active_verticals ;;
+    sql: shop__active_verticals ;;
   }
 }
 
-view: shop_4__luxury_loft_images {
-  dimension: shop_4__luxury_loft_images {
+view: shop__luxury_loft_images {
+  dimension: shop__luxury_loft_images {
     type: string
     description: "Luxury loft images of a shop"
-    sql: shop_4__luxury_loft_images ;;
+    sql: shop__luxury_loft_images ;;
   }
 }
 
-view: shop_4__premium_loft_images {
-  dimension: shop_4__premium_loft_images {
+view: shop__premium_loft_images {
+  dimension: shop__premium_loft_images {
     type: string
     description: "Premium loft images of a shop"
-    sql: shop_4__premium_loft_images ;;
+    sql: shop__premium_loft_images ;;
   }
 }
 
-view: shop_4__active_category_cpcs {
+view: shop__active_category_cpcs {
   dimension: cpc_eur {
     type: number
     sql: cpc_eur ;;
@@ -428,11 +428,11 @@ view: shop_4__active_category_cpcs {
     sql: device_type_id ;;
   }
 
-  dimension: shop_4__active_category_cpcs {
+  dimension: shop__active_category_cpcs {
     type: string
     description: "Category CPCs that would apply for clicks made today. Null when not applicable"
     hidden: yes
-    sql: shop_4__active_category_cpcs ;;
+    sql: shop__active_category_cpcs ;;
   }
 
   dimension: tag_id {
