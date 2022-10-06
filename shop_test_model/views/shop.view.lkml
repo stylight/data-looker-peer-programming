@@ -359,6 +359,14 @@ view: shop {
     sql: {% parameter product_metric_picker %}(${_product_cnt}) ;;
   }
 
+  measure: count_count {
+    type:  count
+  }
+
+  measure: count_distinct {
+    type:  count_distinct
+  }
+
 }
 
 view: shop__active_cpcs {
@@ -479,11 +487,5 @@ view: shop__active_category_cpcs {
   dimension: tag_id {
     type: number
     sql: tag_id ;;
-  }
-  measure: count_count {
-    type:  count
-  }
-  measure: count_distint {
-    type:  count_distinct
   }
 }
