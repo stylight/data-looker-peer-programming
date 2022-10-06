@@ -480,4 +480,10 @@ view: shop__active_category_cpcs {
     type: number
     sql: tag_id ;;
   }
+  measure: count_count {
+    type:  count
+  }
+  measure: count_distint {
+    type:  count_distinct
+  }
 }
